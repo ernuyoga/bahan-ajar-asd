@@ -1,45 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Pertemuan_4_DLL;
 
-/**
- *
- * @author ACER
- */
-class MainDLL {
-
+class MainCDLL {
     public static void main(String[] args) {
-        CDLL ll = new CDLL();
-        ll.addFirst(1);
-        ll.addLast(2);
-        ll.addFirst(0);
-        ll.printToLast();
-        ll.printToFirst();
-        
-        ll.addLast(3);
-        ll.removeFirst();
-        ll.printToLast();
-        System.out.println(ll.isExist(0));
-        System.out.println(ll.isExist(3));
+        CDLL cdll = new CDLL();
+        cdll.addFirst(10);
+        cdll.addFirst(11);
+        cdll.addFirst(5);
+        cdll.addFirst(7);
+        cdll.printToLast();
+        System.out.println(cdll.head.prev.data);
+
+        cdll.removeLast();
+        cdll.printToLast();
+        cdll.printToFirst();
     }
 }
 
-class NodeDLL {
+class NodeCDLL {
 
     int data;
     NodeCDLL next;
     NodeCDLL prev;
 
-    NodeDLL(int data) {
+    NodeCDLL(int data) {
         this.data = data;
         this.next = null;
         this.prev = null;
     }
 }
 
-class DLL {
+class CDLL {
 
     NodeCDLL head;
     NodeCDLL tail;
@@ -62,6 +52,8 @@ class DLL {
             head.prev = input;
             head = input;
         }
+        head.prev = tail;
+        tail.next = head;
         size++;
     }
 
@@ -74,6 +66,8 @@ class DLL {
             tail.next = input;
             tail = input;
         }
+        head.prev = tail;
+        tail.next = head;
         size++;
     }
 
@@ -83,9 +77,11 @@ class DLL {
                 head = tail = null;
             } else {
                 head = head.next;
-                head.prev = null;
+                head.prev = tail;
+                tail.next = head;
             }
             size--;
+
         }
     }
 
@@ -95,7 +91,8 @@ class DLL {
                 head = tail = null;
             } else {
                 tail = tail.prev;
-                tail.next = null;
+                tail.next = head;
+                head.prev = tail;
             }
             size--;
         }
@@ -114,19 +111,19 @@ class DLL {
 
     void printToLast() {
         NodeCDLL pointer = head;
-        while (pointer != null) {
+        do {
             System.out.print(pointer.data + " ");
             pointer = pointer.next;
-        }
+        } while (pointer != head);
         System.out.println();
     }
 
     void printToFirst() {
         NodeCDLL pointer = tail;
-        while (pointer != null) {
+        do {
             System.out.print(pointer.data + " ");
             pointer = pointer.prev;
-        }
+        } while (pointer != tail);
         System.out.println();
     }
 }
