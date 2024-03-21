@@ -16,7 +16,7 @@ class MainStack {
         s.push(2);
         s.print();
         System.out.println(s.top());
-        s.pop();
+        System.out.println(s.popInt());
         s.print();
         s.pop();
         s.print();
@@ -72,6 +72,29 @@ class Stack {
             }
             size--;
         }
+    }
+    
+    int popInt() {
+        int dataKeluar = -1;
+        if (!isEmpty()) {
+            if (size == 1) {
+                dataKeluar = head.data;
+                head = tail = null;
+                size--;
+                return dataKeluar;
+            } else {
+                NodeStack pointer = head;
+                while (pointer.next != tail) {
+                    pointer = pointer.next;
+                }
+                dataKeluar = pointer.next.data;
+                pointer.next = null;
+                tail = pointer;
+                size--;
+                return dataKeluar;
+            }
+        }
+        return dataKeluar;
     }
 
     int top() {
