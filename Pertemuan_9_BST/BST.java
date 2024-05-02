@@ -54,10 +54,10 @@ class BST {
             }
             // jika data yang dihapus memiliki 1 child node
             if (current.right == null) {
-                return current.left;
+                return current.left; // punya child kiri
             }
             if (current.left == null) {
-                return current.right;
+                return current.right; // punya child kanan
             }
             // jika data yang dihapus memiliki 2 child node
             int smallestValue = findSmallestValue(current.right);
