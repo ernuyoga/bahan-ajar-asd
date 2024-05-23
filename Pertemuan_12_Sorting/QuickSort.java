@@ -1,6 +1,7 @@
 package Pertemuan_12_Sorting;
 
 import java.util.Arrays;
+import java.util.random.RandomGenerator;
 
 public class QuickSort {
     public static void main(String[] args) {
@@ -12,7 +13,7 @@ public class QuickSort {
     public static int partition(int[] arr, int l, int r) {
         // elemen terakhir sebagai pivot
         int pivot = arr[r];
-        int i = l - 1;
+        int i = l - 1; //-1
         // mengurutkan elemen yang lebih kecil dari pivot ke sebelah kiri array
         for (int j = l; j < r; j++) {
             if (arr[j] < pivot) {
