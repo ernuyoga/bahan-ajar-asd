@@ -10,7 +10,7 @@ public class MainHashTable {
         hash.insert("Hai");
         hash.insert("Test");
         hash.insert("Test");
-        System.out.println(hash.search("Hello")); // Hello seharusnya ber-index 3
+        System.out.println(hash.search("Hello"));
         hash.searchIndex("Hello");
         System.out.println(hash.search("Hai"));
         hash.searchIndex("Hai");
@@ -41,8 +41,10 @@ class HashTable {
             total += (data.charAt(i) * Math.pow(X, pangkat)) % size;
             pangkat++;
         }
+        int index = total % size;
+        System.out.println(data + " telah masuk pada index " + index);
         // memasukkan ke dalam tabel
-        table[total % size] = data;
+        table[index] = data;
     }
 
     public boolean search(String data) {
@@ -53,8 +55,9 @@ class HashTable {
             total += (data.charAt(i) * Math.pow(X, pangkat)) % size;
             pangkat++;
         }
+        int index = total % size;
         // mencari di dalam tabel
-        if (table[total % size] != null && table[total % size].equals(data)) {
+        if (table[index] != null && table[index].equals(data)) {
             return table[total % size] != null;
         }
         return false;
@@ -68,8 +71,9 @@ class HashTable {
             total += (data.charAt(i) * Math.pow(X, pangkat)) % size;
             pangkat++;
         }
-        if (table[total % size] != null && table[total % size].equals(data)) {
-            System.out.println(total % size);
+        int index = total % size;
+        if (table[index] != null && table[index].equals(data)) {
+            System.out.println(index);
         }
         else {
             System.out.println("Tidak ada di dalam tabel");
@@ -84,8 +88,9 @@ class HashTable {
             total += (data.charAt(i) * Math.pow(X, pangkat)) % size;
             pangkat++;
         }
-        if (table[total % size] != null && table[total % size].equals(data)) {
-            table[total % size] = null;
+        int index = total % size;
+        if (table[index] != null && table[index].equals(data)) {
+            table[index] = null;
         }
     }
 
