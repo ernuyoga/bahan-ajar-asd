@@ -37,15 +37,15 @@ class HashTableOpenHashing {
             total += (data.charAt(i) * Math.pow(X, pangkat)) % size;
             pangkat++;
         }
-        total %= size;
+        int index = total % size;
         // memasukkan ke dalam tabel
-        if (table[total] == null) {
-            table[total] = new LL();
+        if (table[index] == null) {
+            table[index] = new LL();
         }
-        if (table[total].isExists(data)) {
+        if (table[index].isExists(data)) {
             return;
         }
-        table[total].add(new NodeLL(data));
+        table[index].add(new NodeLL(data));
     }
 
     public boolean search(String data) {
@@ -56,14 +56,14 @@ class HashTableOpenHashing {
             total += (data.charAt(i) * Math.pow(X, pangkat)) % size;
             pangkat++;
         }
-        total %= size;
-        if (table[total] == null) {
+        int index = total % size;
+        if (table[index] == null) {
             return false;
         }
-        return table[total].isExists(data);
+        return table[index].isExists(data);
     }
 
-    public void searchIndex (String data) {
+    public void searchIndex(String data) {
         int total = 0;
         int X = 128;
         int pangkat = 0;
@@ -71,12 +71,11 @@ class HashTableOpenHashing {
             total += (data.charAt(i) * Math.pow(X, pangkat)) % size;
             pangkat++;
         }
-        total %= size;
+        int index = total % size;
         if (search(data) == false) {
             System.out.println("Tidak ada di dalam tabel");
-        }
-        else {
-            System.out.println(total);
+        } else {
+            System.out.println(index);
         }
     }
 
@@ -88,11 +87,11 @@ class HashTableOpenHashing {
             total += (data.charAt(i) * Math.pow(X, pangkat)) % size;
             pangkat++;
         }
-        total %= size;
-        if (table[total] == null) {
+        int index = total % size;
+        if (table[index] == null) {
             return;
         }
-        table[total].remove(data);
+        table[index].remove(data);
     }
 
     public void printTable() {
@@ -100,8 +99,7 @@ class HashTableOpenHashing {
             System.out.print(i + " -> ");
             if (table[i] == null) {
                 System.out.println("[]");
-            }
-            else {
+            } else {
                 table[i].print();
             }
         }
@@ -133,8 +131,7 @@ class LL {
     public void add(NodeLL input) {
         if (isEmpty()) {
             head = tail = input;
-        }
-        else {
+        } else {
             tail.next = input;
             tail = input;
         }
@@ -148,8 +145,7 @@ class LL {
             if (data.equals(pointer.data)) {
                 if (prev == null) {
                     head = pointer.next;
-                }
-                else {
+                } else {
                     prev.next = pointer.next;
                 }
                 size--;
